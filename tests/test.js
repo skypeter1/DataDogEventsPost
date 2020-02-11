@@ -19,3 +19,11 @@ describe('App module Test',function(){
         assert.equal(typeof myApp._router, 'function','the app does not have a router init yet');
       })  
 })
+
+describe('Integration with Loggly',function(){
+    it('should receive events from Loggly HTTP Endpoint',function(done){
+        request(myApp)
+        .post("/loggly")
+        .expect(200,done);
+    })
+})
