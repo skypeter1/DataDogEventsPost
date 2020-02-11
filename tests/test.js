@@ -7,4 +7,15 @@ describe('App module Test',function(){
         myApp.on('server', done);
         myApp.emit('server');
     })
+
+    it('should 404 without routes', function(done){
+        request(myApp)
+        .get('/')
+        .expect(404, done);
+    })
+
+    it('server and router should be callable', function(){
+        assert.equal(typeof myApp, 'function','app module is not able to init');
+        assert.equal(typeof myApp._router, 'function','the app does not have a router init yet');
+      })  
 })
