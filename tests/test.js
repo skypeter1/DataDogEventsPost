@@ -1,6 +1,20 @@
 var request = require('supertest');
 var myApp = require('../app');
 var assert =  require('assert');
+var samplePayloadLoggly = {
+      "alert_name" : "IndexOutOfBounds Exception",
+      "edit_alert_link" : "https://sample.loggly.com/alerts/edit/8188",
+      "source_group" : "N/A",
+      "start_time" : "Mar 17 11:41:40",
+      "end_time" : "Mar 17 11:46:40",
+      "search_link" : "https://sample.loggly.com/search/?terms=&source_group=&savedsearchid=112323&from=2015-03...",
+      "query" : "* ",
+      "num_hits" : 225,
+      "recent_hits" : [ ],
+      "owner_username" : "sample",
+      "owner_subdomain" : "sample",
+      "owner_email" : "pm@loggly.com"
+    }
 
 describe('App module Test',function(){
     it('should start the express server',function(done){
@@ -21,7 +35,7 @@ describe('App module Test',function(){
 
     it('should listen to port 80', function(){
         port = myApp.server.address().port;
-        assert.equal(port, 8080 ,"The connection port should be 8080 instead of "+port);
+        assert.equal(port, 8081 ,"The connection port should be 8080 instead of "+port);
       })
 })
 
@@ -32,5 +46,14 @@ describe('Integration with Loggly',function(){
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200,done);
+    })
+})
+
+
+describe('Integration with DataDog', function(){
+    it('should POST events to DataDog',function(done){
+        request(myApp.app)
+        .post("/datadog")
+        .expect(200,done)
     })
 })
