@@ -14,7 +14,10 @@ var samplePayloadLoggly = {
       "owner_username" : "sample",
       "owner_subdomain" : "sample",
       "owner_email" : "pm@loggly.com"
-    }
+    };
+
+
+
 
 describe('App module Test',function(){
     it('should start the express server',function(done){
@@ -54,6 +57,37 @@ describe('Integration with DataDog', function(){
     it('should POST events to DataDog',function(done){
         request(myApp.app)
         .post("/datadog")
-        .expect(200,done)
+        .set('Accept', 'application/json')
+        .expect(400,done);
+        // .end(function(err, res,done) {
+        //     if (err) throw err;
+        // });
     })
+    
+
+    // it('should conform to the JSON spec of the payload from loggly',function(done){
+    //     request(myApp.app)
+    //     .post("/datadog")
+    //     .expect(200, {
+    //       "alert_name" : "IndexOutOfBounds Exception",
+    //       "edit_alert_link" : "https://sample.loggly.com/alerts/edit/8188",
+    //       "source_group" : "N/A",
+    //       "start_time" : "Mar 17 11:41:40",
+    //       "end_time" : "Mar 17 11:46:40",
+    //       "search_link" : "https://sample.loggly.com/search/?terms=&source_group=&savedsearchid=112323&from=2015-03...",
+    //       "query" : "* ",
+    //       "num_hits" : 225,
+    //       "recent_hits" : [ ],
+    //       "owner_username" : "sample",
+    //       "owner_subdomain" : "sample",
+    //       "owner_email" : "pm@loggly.com"
+    //     }, done);
+    // })
+
+    // it('should POST events to DataDog',function(done){
+    //     request(myApp.app)
+    //     .post("/datadog")
+    //     .expect(200,done)
+    // })
+
 })

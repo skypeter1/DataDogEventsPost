@@ -34,15 +34,40 @@ router.post("/loggly", function (req,res) {
 })
 
 router.post("/datadog", jsonParser, function (req,res) {
-    url = "https://api.github.com/users/mralexgray/repos";
-    //url = "https://api.datadoghq.com/api/v1/events?api_key=607cb962dc483d8989f499dafbe1c54d&application_key=185dfd7b51e745382fed7f7ba682c9ab75e7e828";
-    console.log(req.params);
-    got(url, { json:true }).then(response => {
-        //console.log(response);
-        res.status(200).json("{meesage:Ok}");
-    }).catch(error => {
-        console.log("Throws an error " + error);
-    });
+    var body = req.body;
+    if(body.hasOwnProperty('alert_name') && body.hasOwnProperty('search_link') ){
+        var payload = rewriteData(body);
+        url = "https://api.datadoghq.com/api/v1/events?api_key=607cb962dc483d8989f499dafbe1c54d&application_key=185dfd7b51e745382fed7f7ba682c9ab75e7e828";
+        got.post(url, { json:true, body:payload }).then(response => {
+            if(response.statusCode === 202){
+                console.log(response.statusMessage);
+                res.status(200).json(response.body);  
+            }else{
+                res.sendStatus(400);  
+            }
+        }).catch(error => {
+            console.log("Throws an error " + error);
+        });
+    }else{
+    res.sendStatus(400);
+    }
 })
+
+function rewriteData(body){
+    let search_link = body.search_link;
+    let num_hits = body.num_hits;
+    let recent_hits = body.recent_hits;
+
+    var dataDogPostData = {
+        "title": body.alert_name,
+        "text": body.edit_alert_link,
+        "priority": "normal",
+        "tags": [
+            "environment:test"
+        ],
+        "alert_type": "info"
+    }
+    return dataDogPostData;
+}
 
 module.exports = router
