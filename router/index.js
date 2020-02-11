@@ -23,15 +23,16 @@ const samplePayloadLoggly = {
     }
 
 
-router.post("/loggly", function (req,res) {
-    url = "https://api.github.com/users/mralexgray/repos";
+// router.post("/loggly", function (req,res) {
+//     url = "https://api.github.com/users/mralexgray/repos";
 
-    got(url, { json:true }).then(response => {
-        res.status(200).json("{meesage:Ok}");
-    }).catch(error => {
-        console.log("Throws an error " + error);
-    });
-})
+//     got(url, { json:true }).then(response => {
+
+//         res.status(200).json("{meesage:Ok}");
+//     }).catch(error => {
+//         console.log("Throws an error " + error);
+//     });
+// })
 
 router.post("/datadog", jsonParser, function (req,res) {
     var body = req.body;

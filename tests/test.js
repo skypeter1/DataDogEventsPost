@@ -42,15 +42,15 @@ describe('App module Test',function(){
       })
 })
 
-describe('Integration with Loggly',function(){
-    it('should receive events from Loggly HTTP Endpoint',function(done){
-        request(myApp.app)
-        .post("/loggly")
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200,done);
-    })
-})
+// describe('Integration with Loggly',function(){
+//     it('should receive events from Loggly HTTP Endpoint',function(done){
+//         request(myApp.app)
+//         .post("/loggly")
+//         .set('Accept', 'application/json')
+//         .expect('Content-Type', /json/)
+//         .expect(200,done);
+//     })
+// })
 
 
 describe('Integration with DataDog', function(){
