@@ -14,11 +14,13 @@ sudo apt-get install build-essential
 ```
 
 Configure an alert endpoint and send the data using POST
+
 https://www.loggly.com/docs/alert-endpoints/
 
 **Optional**
 
 You need to provide your own credentials in order to make it work
+
 https://docs.datadoghq.com/account_management/api-app-keys/
 
 
@@ -30,9 +32,13 @@ First clone this repo.
 At the root directory there is a Makefile
 
 `make docker` - builds the docker container
+
 `make docker-run` - builds the docker container and runs the service
+
 `make docker-shell` - builds the docker container and runs a shell inside it
+
 `make docker-test` - builds the container and runs your test suite inside it
+
 
 ## Local
 
