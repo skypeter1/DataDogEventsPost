@@ -1,6 +1,6 @@
 FROM node
 
-ARG VERSION=1.0.0
+# ARG VERSION=1.0.0
 ENV NODE_ENV dev
 WORKDIR /usr/src/app
 
@@ -17,3 +17,4 @@ ADD package.json ./package.json
 EXPOSE 80
 RUN npm install 
 
+CMD ["npm","start"]
