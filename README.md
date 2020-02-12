@@ -63,7 +63,7 @@ npm test
 
 ## Known Issues
 
-For Nodejs if you are not a root user probably it wont give you accesss to port 80 if you are trying to run this locally(outside the declared container)
+For Nodejs if you are not a root user probably it wont give you accesss to port 80 if you are trying to run this locally *(outside the declared container)*
 
 ``` Bash
 sudo apt-get install libcap2-bin
