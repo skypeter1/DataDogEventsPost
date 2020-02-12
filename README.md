@@ -1,6 +1,6 @@
-# DataDog Events Post Service
+# Loggly / DataDog Events Post Service
 
-This is a service that takes Loggly's API Alert Endpoints
+This is a service that takes Loggly's API Alert Endpoints data
 and post it as events to DataDog.
 
 The project is built using Nodejs, Express and Mocha.
@@ -10,7 +10,7 @@ It has a simple endpoint http://localhost/datadog that receives the JSON objects
 
 ## Requirements
 
-You may need to have make installed 
+You may need to have *make* installed 
 
 ``` Bash
 sudo apt-get install build-essential
@@ -26,13 +26,23 @@ You need to provide your own credentials in order to make it work
 
 https://docs.datadoghq.com/account_management/api-app-keys/
 
+There is a default credentials specified on the docker container. If you want to replace them
+Go to the Dockerfile lines 8 - 9 and set your own credentials
 
+```Dockerfile
+ENV DATADOG_APIKEY=<YOUR-DATADOG-API-KEY>
+ENV DATADOG_APPLICATION_KEY=<YOUR-DATADOG-APPLICATION-KEY>
+```
 
 ## Instructions for Docker
 
 First clone this repo.
 
-At the root directory there is a Makefile
+``` Bash
+git clone https://github.com/skypeter1/DataDogEventsPost.git
+```
+
+At the root directory there is a Makefile with different targets
 
 `make docker` - builds the docker container
 
@@ -43,7 +53,7 @@ At the root directory there is a Makefile
 `make docker-test` - builds the container and runs your test suite inside it
 
 
-## Local
+## On Localhost
 
 To start the server go to the root directory
 
