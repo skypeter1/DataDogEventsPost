@@ -1,6 +1,6 @@
 # DataDog Events Post Service
 
-This project is a small project that takes Loggly's API Alert Endpoints
+This is a service that takes Loggly's API Alert Endpoints
 and post it as events to DataDog.
 
 The project is built using Nodejs, Express and Mocha
