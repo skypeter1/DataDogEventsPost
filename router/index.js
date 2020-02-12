@@ -8,7 +8,9 @@ const router = express.Router();
 const got = require('got');
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json();
-
+const apiUrl = "https://api.datadoghq.com/api/v1/events";
+const api_key = (process.env.hasOwnProperty("DATADOG_APIKEY")) ? process.env.DATADOG_APIKEY : "607cb962dc483d8989f499dafbe1c54d";
+const application_key = (process.env.hasOwnProperty("DATADOG_APPLICATION_KEY")) ? process.env.DATADOG_APPLICATION_KEY : "185dfd7b51e745382fed7f7ba682c9ab75e7e828";
 
 /**
  * Routes
@@ -28,8 +30,8 @@ router.post("/datadog", jsonParser, function (req,res) {
                 res.sendStatus(400);  
             }
         }).catch(error => {
-            res.sendStatus(403);
             console.log("Throws an error " + error);
+            res.sendStatus(403);
         });
     }else{
         res.sendStatus(400);
@@ -39,13 +41,8 @@ router.post("/datadog", jsonParser, function (req,res) {
 /**
  *  Functions block
  */
-
 function getDataDogUrl(){
-    let apiUrl = "https://api.datadoghq.com/api/v1/events";
-    let api_key = "607cb962dc483d8989f499dafbe1c54d";
-    let application_key = "185dfd7b51e745382fed7f7ba682c9ab75e7e828";
     let url = apiUrl + "?api_key=" + api_key + "?application_key=" + application_key;
-
     return url;
 }
 
