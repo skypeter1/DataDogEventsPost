@@ -42,7 +42,7 @@ router.post("/datadog", jsonParser, function (req,res) {
  *  Functions block
  */
 function getDataDogUrl(){
-    let url = apiUrl + "?api_key=" + api_key + "?application_key=" + application_key;
+    let url = apiUrl + "?api_key=" + api_key + "&application_key=" + application_key;
     return url;
 }
 
