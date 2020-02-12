@@ -3,7 +3,10 @@
 This is a service that takes Loggly's API Alert Endpoints
 and post it as events to DataDog.
 
-The project is built using Nodejs, Express and Mocha
+The project is built using Nodejs, Express and Mocha.
+
+It has a simple endpoint http://localhost/datadog that receives the JSON objects sent by the Loggly's alert and parse it to send an event to DataDog
+
 
 ## Requirements
 
