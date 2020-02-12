@@ -36,19 +36,9 @@ describe('App module Test',function(){
 
     it('should listen to port 80', function(){
         port = myApp.server.address().port;
-        assert.equal(port, 8081 ,"The connection port should be 8080 instead of "+port);
+        assert.equal(port, 80 ,"The connection port should be 80 instead of " + port);
       })
 })
-
-// describe('Integration with Loggly',function(){
-//     it('should receive events from Loggly HTTP Endpoint',function(done){
-//         request(myApp.app)
-//         .post("/loggly")
-//         .set('Accept', 'application/json')
-//         .expect('Content-Type', /json/)
-//         .expect(200,done);
-//     })
-// })
 
 
 describe('Integration with DataDog', function(){
@@ -63,14 +53,5 @@ describe('Integration with DataDog', function(){
             if (err) return done(err);
             done();
         });
-
     })
-    
-
-    // it('should POST events to DataDog',function(done){
-    //     request(myApp.app)
-    //     .post("/datadog")
-    //     .expect(200,done)
-    // })
-
 })

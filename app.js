@@ -2,7 +2,6 @@
  * Service Main EntryPoint
  */
 const express = require("express");
-const bodyParser = require('body-parser');
 const app = express();
 const routes = require("./router/index");
 
@@ -12,7 +11,7 @@ app.use(routes);
  * Kickstart node server
  */
 function startListening(){
-    return instance = app.listen(process.env.PORT || 8081, () => {
+    return instance = app.listen(process.env.PORT || 80, () => {
         console.warn("Listening on port %s...", server.address().port);
     })
 }
