@@ -18,13 +18,13 @@ docker-run:
 
 docker-shell: 
 		@echo "Builds the docker container and runs a shell inside it"
-		docker build -t $(DOCKER_TAG) .
+		docker build -t $(DOCKER_REPO):$(DOCKER_TAG) --no-cache .
 		docker run -it $(DOCKER_REPO):$(DOCKER_TAG) sh
 		# docker exec -it $(MYAPP) sh 
 
 docker-test:
 		@echo "Builds the container and runs your test suite inside it"		
-		docker build -t $(DOCKER_TAG) .
+		docker build -t $(DOCKER_REPO):$(DOCKER_TAG) --no-cache .
 		docker run -it $(DOCKER_REPO):$(DOCKER_TAG) npm test 		
 
 clean:
