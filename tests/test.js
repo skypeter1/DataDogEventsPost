@@ -42,16 +42,12 @@ describe('App module Test',function(){
 
 
 describe('Integration with DataDog', function(){
-    it('should thrown an error whern posting events to DataDog', function(done){
+    it('should POST events to DataDog', function(done){
         assert(samplePayloadLoggly.hasOwnProperty('alert_name') && samplePayloadLoggly.hasOwnProperty('search_link') , "This request is malformed");
         request(myApp.app)
         .post("/datadog")
         .send(samplePayloadLoggly)
         .set('Accept', 'application/json')
-        .expect(403,done)
-        .end(function(err, res) {
-            if (err) return done(err);
-            done();
-        });
+        .expect(200,done)
     })
 })

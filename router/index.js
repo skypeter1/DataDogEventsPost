@@ -23,18 +23,19 @@ router.post("/datadog", jsonParser, function (req,res) {
         url = getDataDogUrl();
         //console.log(payload);
         got.post(url, { json:true, body:payload }).then(response => {
+            console.log(response.statusCode);
             if(response.statusCode === 202){
                 console.log(response.statusMessage);
                 res.status(200).json(response.body);  
             }else{
-                res.sendStatus(400);  
+                res.sendStatus(404);  
             }
         }).catch(error => {
             console.log("Throws an error " + error);
             res.sendStatus(403);
         });
     }else{
-        res.sendStatus(400);
+        res.sendStatus(404);
     }
 })
 
